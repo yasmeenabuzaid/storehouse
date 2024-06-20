@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* start main*/
 * {
     margin: 0;
@@ -541,18 +541,6 @@ button.delete-btn:hover {
         
         overflow-x: auto; /
     }
-=======
-/* start main*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-weight: 700;
-   
-}
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(148, 144, 144);
-    padding: 20px; 
+
 }
 /* end main*/
