@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -324,4 +325,332 @@
 
 </script>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+    <title> storehouse</title>
+</head>
+
+<body>
+    <!--start header-->
+    <header>
+        <h1><b>storehouse</b></h1>
+        <h3>Hello, welcome to storehouse</h3>
+    </header>
+    <!--end header-->
+    <!--start main section-->
+
+    <div class="main"></div>
+    <!--start input-->
+    <div class="inputs">
+        <label for="title">name :</label>
+        <input name="title" type="text" id="title" placeholder="title">
+        <div class="p">
+            <label for="price">price :</label><br>
+            <div class="grid-container">
+            <input onkeyup="gettotal()" type="number" id="price" placeholder="price"><br>
+            <input onkeyup="gettotal()" type="number" id="taxes" placeholder="taxes"><br>
+            <input onkeyup="gettotal()" type="number" id="ads" placeholder="ads"><br>
+            <input onkeyup="gettotal()" type="number" id="discount" placeholder="discount"> <br>
+            </div> 
+            <p id="poftotal"
+                style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                THE TOTAL IS =
+                <small id="total" class="classtotal"></small>
+            </p>
+        </div>
+        <br>
+        <!--   <label for="count" class="labelcount">count :</label>-->
+        <input name="count" type="number" id="count" placeholder="count"><br>
+        <label for="category">category :</label>
+        <input name="category" type="text" id="category" placeholder="category"><br>
+        <button id="submit" class="continue-application"><div>
+            <div class="pencil"></div>
+            <div class="folder">
+                <div class="top">
+                    <svg viewBox="0 0 24 27">
+                        <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                    </svg>
+                </div>
+                <div class="paper"></div>
+            </div>
+        </div>
+        Create new product</button>
+    </div>
+    <!--end input-->
+    <!--start output-->
+    <div class="outputs">
+        <div class="searchBlock">
+            <label name="search">search :</label>
+            <input type="search" id="search" onkeyup="searchData(this.value)" placeholder="search">
+            <div class="btnsearch">
+                <button id="searchname" onclick=" getSearthMood(this.id)">Search BY Name</button>
+                <button id="searchcategory" onclick=" getSearthMood(this.id)">Search BY category </button>
+            </div>
+            <div id="deleteALL">
+
+            </div>
+            <table>
+                <thead>
+                    <tr class="mar">
+                        <th>id</th>
+                        <th>title</th>
+                        <th>price</th>
+                        <th>taxes</th>
+                        <th>ads</th>
+                        <th>discount</th>
+                        <th>total</th>
+                        <th>count</th>
+                        <th>category</th>
+                        <th>update</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <!--end output-->
+</body>
+<script>
+
+    // Definition of variables
+    let title = document.getElementById("title");
+    let price = document.getElementById("price");
+    let taxes = document.getElementById("taxes");
+    let ads = document.getElementById("ads");
+    let discount = document.getElementById("discount");
+    let total = document.getElementById("total");
+    let count = document.getElementById("count");
+    let category = document.getElementById("category");
+    let submit = document.getElementById("submit");
+    let poftotal = document.getElementById("poftotal")
+    let mood = 'create';
+    let tmp;
+
+    // calc of total
+    function gettotal() {
+
+        let result = (+price.value || 0) + (+taxes.value || 0) + (+ads.value || 0) - (+discount.value || 0);
+        total.innerHTML = result;
+
+    }
+
+    //for create product
+
+    let datapro;
+    if (localStorage.product) {
+        datapro = JSON.parse(localStorage.product);
+    }
+    else {
+        datapro = [];
+    }
+
+    //new product
+    submit.onclick = function () {
+        let newPro = {
+            title: title.value,
+            price: price.value,
+            ads: ads.value,
+            discount: discount.value,
+            taxes: taxes.value,
+            total: total.innerHTML,
+            count: count.value,
+            category: category.value,
+        };
+
+        if (title.value != "") {
+            if (mood === 'create') {
+                if (newPro.count > 1) {
+                    for (let i = 0; i < newPro.count; i++) {
+                        datapro.push(newPro);
+                    }
+                }
+                else {
+                    datapro.push(newPro);
+                }
+            }
+            else if (mood === 'update') {
+                datapro[tmp] = newPro;
+                mood = 'create';
+                submit.innerHTML = 'Create';
+                count.style.display = "block";
+            }
+        }
+        else {
+            clearData()
+        }
+
+        localStorage.setItem('product', JSON.stringify(datapro));
+        createData(); // Clear input fields
+        showData(); // Refresh the displayed products
+    };
+
+    //for delete product
+    function createData() {
+        title.value = "";
+        price.value = "";
+        taxes.value = "";
+        ads.value = "";
+        discount.value = "";
+        total.innerHTML = "";
+        count.value = "";
+        category.value = "";
+    }
+
+    //for show product
+    function showData() {
+        let table = '';
+
+
+        for (let i = 0; i < datapro.length; i++) {
+            table += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${datapro[i].title}</td>
+                        <td>${datapro[i].price}</td>
+                        <td>${datapro[i].taxes}</td>
+                        <td>${datapro[i].ads}</td>
+                        <td>${datapro[i].discount}</td>
+                        <td>${datapro[i].total}</td>
+                        <td>${datapro[i].count}</td>
+                        <td>${datapro[i].category}</td>
+                        <td><button class="update-btn" onclick ="updateData(${i})" ><i class="fa-solid fa-pen"></i></button></td>
+                        <td><button class="delete-btn" onclick = "deleteData(${i})" ><i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+        }
+
+
+        document.getElementById('tbody').innerHTML = table;
+
+        let btndelete = document.getElementById("deleteALL");
+        if (datapro.length > 0) {
+            btndelete.innerHTML = `
+            <button onclick="deleteAll()">Delete All (${datapro.length})</button>
+        `;
+        }
+        else {
+            btndelete.innerHTML = "";
+        }
+    }
+
+    function deleteData(i) {
+        datapro.splice(i, 1);
+        localStorage.setItem('product', JSON.stringify(datapro));
+        showData();
+    }
+
+    function deleteAll() {
+        localStorage.clear();
+        datapro = [];
+        showData();
+    }
+
+    showData();
+
+    //up date
+
+    function updateData(i) {
+
+        title.value = datapro[i].title;
+        price.value = datapro[i].price;
+        taxes.value = datapro[i].taxes;
+        category.value = datapro[i].category;
+        ads.value = datapro[i].ads;
+        discount.value = datapro[i].discount;
+        gettotal()
+
+        count.style.display = "none";
+        submit.innerHTML = "Update"
+        mood = "update";
+        tmp = i;
+        scroll({
+            top: 150,
+            behavior: 'smooth'
+        })
+    }
+    showData();
+    //searth 
+    let searchMood = '';
+
+    function getSearthMood(id) {
+        let search = document.getElementById("search");
+
+        if (id === 'searchname') {
+            searchMood = 'title';
+            search.setAttribute("placeholder", "Search by name");
+        } else if (id === 'searchcategory') {
+            searchMood = 'category';
+            search.setAttribute("placeholder", "Search by category");
+        }
+
+        search.focus();
+        search.value = "";
+        showData()
+        console.log(searchMood);
+    }
+    function searchData(value) {
+        let table = '';
+
+        // Convert input value to lowercase for case-insensitive search
+        let searchValue = value.toLowerCase();
+
+        for (let i = 0; i < datapro.length; i++) {
+            // Check if either title or category matches the search value
+            if (searchMood === 'title' && datapro[i].title.toLowerCase().includes(searchValue)) {
+                table += `
+                <tr>
+                    <td>${i}</td>
+                    <td>${datapro[i].title}</td>
+                    <td>${datapro[i].price}</td>
+                    <td>${datapro[i].taxes}</td>
+                    <td>${datapro[i].ads}</td>
+                    <td>${datapro[i].discount}</td>
+                    <td>${datapro[i].total}</td>
+                    <td>${datapro[i].count}</td>
+                    <td>${datapro[i].category}</td>
+                    <td><button class="update-btn" onclick="updateData(${i})"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button class="delete-btn" onclick="deleteData(${i})"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            `;
+            } else if (searchMood === 'category' && datapro[i].category.toLowerCase().includes(searchValue)) {
+                table += `
+                <tr>
+                    <td>${i}</td>
+                    <td>${datapro[i].title}</td>
+                    <td>${datapro[i].price}</td>
+                    <td>${datapro[i].taxes}</td>
+                    <td>${datapro[i].ads}</td>
+                    <td>${datapro[i].discount}</td>
+                    <td>${datapro[i].total}</td>
+                    <td>${datapro[i].count}</td>
+                    <td>${datapro[i].category}</td>
+                    <td><button class="update-btn" onclick="updateData(${i})"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button class="delete-btn" onclick="deleteData(${i})"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            `;
+            }
+        }
+
+        // Update table content only, without clearing existing rows
+        let tbody = document.getElementById('tbody');
+        tbody.innerHTML = table;
+    }
+
+</script>
+
+>>>>>>> 9c333aa8dc7e72eb7107fa7c9c7dfe6b1269ca24
 </html>
