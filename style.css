@@ -44,8 +44,8 @@ header h3 {
     padding: 50px;
     padding-bottom: 60px;
     border-radius: 8px 8px 0px 0px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Increased box shadow */
-    transition: box-shadow 0.3s ease; /* Smooth transition for box shadow */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease;
 }
 
 
@@ -74,12 +74,12 @@ input[type="number"] {
 
 input[type="number"] {
     
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased box shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 
 
 }
 input:hover {
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3); /* Even more pronounced shadow on hover */
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3); 
 }
 /* start btn create */
 .continue-application {
@@ -317,7 +317,7 @@ input:hover {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 0px 0px 8px 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Increased box shadow */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
     transition: box-shadow 0.3s ease; 
     
     
@@ -506,16 +506,16 @@ button.delete-btn:hover {
         margin: 1px;
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed; /* تحديد عرض الأعمدة بشكل ثابت */
+        table-layout: fixed;
         margin-bottom: 10px;
-        overflow-x: auto; /* إضافة شريط التمرير الأفقي إذا لزم الأمر */
+        overflow-x: auto; 
     }
 
     table th, table td {
         padding: 8px;
         border: 1px solid #ddd;
         text-align: center;
-        box-sizing: border-box; /* تأكد من ضمن حواف وحشوات في العرض الإجمالي */
+        box-sizing: border-box; 
     }
 
     table th {
@@ -524,15 +524,15 @@ button.delete-btn:hover {
         color: #333;
     }
 
-    /* تعيين حد أدنى لعرض الخلية لضمان التناسب مع المحتوى */
+    
     table td {
-        min-width: 100px; /* يمكنك تعديل هذا الرقم حسب احتياجاتك */
+        min-width: 100px; 
     }
 
-    /* تصغير حجم الأزرار */
+
     table .btn {
-        padding: 6px; /* حجم الحشوات الداخلية */
-        font-size: 10px; /* حجم الخط */
+        padding: 6px; 
+        font-size: 10px;
     }
 
 
